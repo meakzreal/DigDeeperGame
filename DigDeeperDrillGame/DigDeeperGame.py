@@ -32,7 +32,7 @@ quotes = [
     "The rocks arent going to mine themselves. Probably.",
     "Work smarter, not harder. Upgrade your drill.",
     "Youre not broke. Your money is just underground.",
-    "Gold doesn't grow on trees. It grows in holes. Dig.",
+    "Gold doesnt grow on trees. It grows in holes. Dig.",
     "A little bit of dirt never hurt anyone. Probably.",
     "Todays forecast: 100 percent chance of rocks.",
     "Mining is just gardening for people who hate sunlight.",
@@ -40,7 +40,13 @@ quotes = [
 ]
 
 # Definitions
-
+def drilling_phase_1():
+    print("Starting drilling...")
+    Drilling_Sound.play()
+    time.sleep(4)
+    Drilling_Sound.stop()
+    print("Drilling complete!")
+    
 def start_up_screen():
     print("=========================================")
     print("           DIG DEEPER - MENU")
@@ -55,15 +61,8 @@ def start_up_screen():
 
     if choice_of_start_up_screen == "1":
         os.system("cls")
-        print("Starting drilling...")
-        Drilling_Sound.play()
-        time.sleep(4)
-        Drilling_Sound.stop()
-        print("Drilling complete!")
         time.sleep(2)
-        os.system("cls")
-        time.sleep(1)
-        start_up_screen()
+        drilling_phase_1()
 
     elif choice_of_start_up_screen == "2":
         print("You Cant sell yet!")
