@@ -14,4 +14,4 @@ Start with a `basic drill` and work your way towards building a mining empire. `
 - `Created:` 25/10/2026
 - `Development:` Starting tomorrow
 
-This project is currently in its early stages, with development officially beginning tomorrow. More features and improvements will be added as the game grows.
+This project is currently in its early stages, with development officially beginning on the 26th. More features and improvements will be added as the game grows.
