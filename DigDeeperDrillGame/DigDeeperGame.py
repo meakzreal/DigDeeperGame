@@ -14,12 +14,18 @@ import time
 import random
 import pygame
 
+# Variables for game
+
+multiplier_drill = 1
+cash = 0
+random_drill_amount = [1 , 35]
+
 # Variables
 
 pygame.mixer.init()
 
 Drilling_Sound = pygame.mixer.Sound("Sounds/drillingsound.wav")
-Drilling_Sound.set_volume(0.2) ## 40% volume
+Drilling_Sound.set_volume(0.1) ## 10% volume
 
 # Quote Variables
 
@@ -40,22 +46,61 @@ quotes = [
 ]
 
 # Definitions
+
+def show_values():
+    global cash,ready_to_leave,multiplier_drill
+    os.system("cls")
+    time.sleep(0.5)
+    print("============")
+    print(f"Cash: {cash}")
+    print(f"Drill Multiplier: {multiplier_drill}")
+    ready_to_leave = input("Click Enter to Leave\n>> ")
+    
+    if ready_to_leave == "":
+        os.system("cls")
+        time.sleep(1)
+        start_up_screen()
+        
+    else:
+        os.system("cls")
+        time.sleep(1)
+        start_up_screen()
+    
 def drilling_phase_1():
+    global cash, multiplier_drill, random_drill_amount
+     
     print("Starting drilling...")
     Drilling_Sound.play()
-    time.sleep(4)
+    time.sleep(5)
+    Drilling_Sound.stop()
+    cash = multiplier_drill + random.choice(random_drill_amount)
+    Drilling_Sound.play()
+    time.sleep(3)
     Drilling_Sound.stop()
     print("Drilling complete!")
-    
+def you_sure():
+    global you_sure_q
+    print("are you sure? y/n")
+    you_sure_q = input(">> ")  
+    if you_sure_q == "y":
+        return True
+        
+    elif you_sure_q == "n":
+        print("restarting")
+        time.sleep(2)
+        os.system("cls")
+        time.sleep(1)
+        start_up_screen()
+        
 def start_up_screen():
     print("=========================================")
     print("           DIG DEEPER - MENU")
     print("=========================================")
     print("⛏️  1. Start Drilling")
-    print("💰  2. Sell Your Loot")
-    print("💎  3. Check Market Prices")
-    print("💬  4. Hear a Quote")
-    print("🚪  5. Quit — The Cave Isn't Going Anywhere...")
+    print("💰 2. Sell Your Loot")
+    print("3. Check Some Values")
+    print("4. Hear a Quote")
+    print("5. Quit — The Cave Isn't Going Anywhere...")
 
     choice_of_start_up_screen = input(">> ")
 
@@ -63,6 +108,9 @@ def start_up_screen():
         os.system("cls")
         time.sleep(2)
         drilling_phase_1()
+        time.sleep(2)
+        os.system("cls")
+        start_up_screen()
 
     elif choice_of_start_up_screen == "2":
         print("You Cant sell yet!")
@@ -72,13 +120,16 @@ def start_up_screen():
         start_up_screen()
 
     elif choice_of_start_up_screen == "3":
-        print("Market prices are not available yet!")
+        print("Opening Option 3")
         time.sleep(2)
         os.system("cls")
         time.sleep(0.5)
+        show_values()
         start_up_screen()
 
     elif choice_of_start_up_screen == "4":
+        print("Opening Option 4")
+        time.sleep(1)
         quote_of_the_day()
         time.sleep(2)
         os.system("cls")
@@ -86,6 +137,7 @@ def start_up_screen():
         start_up_screen()
 
     elif choice_of_start_up_screen == "5":
+        you_sure()
         print("Thanks for playing Dig Deeper!")
         time.sleep(2)
         exit()
