@@ -12,6 +12,6 @@ Start with a `basic drill` and work your way towards building a mining empire. `
 - `Author:` Meakz
 - `Version:` 1.0
 - `Created:` 25/10/2026
-- `Development:` Starting tomorrow
+- `Development:` Started
 
 This project is currently in its early stages, with development officially beginning on the 26th. More features and improvements will be added as the game grows.
