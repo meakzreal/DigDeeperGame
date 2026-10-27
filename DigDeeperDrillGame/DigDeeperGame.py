@@ -16,9 +16,11 @@ import pygame
 
 # Variables for game
 
-multiplier_drill = 1
-cash = 0
+multiplier_drill = 0.5
+rocks = 0
 random_drill_amount = [1 , 35]
+sell_value = 1
+cash = 0
 
 # Variables
 
@@ -48,10 +50,11 @@ quotes = [
 # Definitions
 
 def show_values():
-    global cash,ready_to_leave,multiplier_drill
+    global rocks,ready_to_leave,multiplier_drill,cash
     os.system("cls")
     time.sleep(0.5)
     print("============")
+    print(f"rocks: {rocks}")
     print(f"Cash: {cash}")
     print(f"Drill Multiplier: {multiplier_drill}")
     ready_to_leave = input("Click Enter to Leave\n>> ")
@@ -67,17 +70,18 @@ def show_values():
         start_up_screen()
     
 def drilling_phase_1():
-    global cash, multiplier_drill, random_drill_amount
+    global rocks, multiplier_drill, random_drill_amount
      
     print("Starting drilling...")
     Drilling_Sound.play()
     time.sleep(5)
     Drilling_Sound.stop()
-    cash = multiplier_drill + random.choice(random_drill_amount)
+    rocks = multiplier_drill + random.choice(random_drill_amount)
     Drilling_Sound.play()
     time.sleep(3)
     Drilling_Sound.stop()
     print("Drilling complete!")
+    
 def you_sure():
     global you_sure_q
     print("are you sure? y/n")
@@ -91,7 +95,12 @@ def you_sure():
         os.system("cls")
         time.sleep(1)
         start_up_screen()
-        
+      
+def sell_all():
+    global cash
+    cash = rocks - rocks
+    return True
+      
 def start_up_screen():
     print("=========================================")
     print("           DIG DEEPER - MENU")
@@ -113,7 +122,8 @@ def start_up_screen():
         start_up_screen()
 
     elif choice_of_start_up_screen == "2":
-        print("You Cant sell yet!")
+        you_sure()
+        sell_all()
         time.sleep(2)
         os.system("cls")
         time.sleep(0.5)
